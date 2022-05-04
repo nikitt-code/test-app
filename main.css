@@ -34,6 +34,8 @@ html {
     font-size: 14px;
     border-radius: 8px;
     outline: none;
+    max-width: 100%;
+    min-width: 100%;
 }
 .card > select {
     margin-top: 12px;
