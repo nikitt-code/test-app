@@ -25,6 +25,16 @@ html {
     border-radius: 8px;
     outline: none;
 }
+.card > textarea {
+    margin-top: 12px;
+    display: flex;
+    width: 100%;
+    border: 1.5px solid #bbbbbb;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    outline: none;
+}
 .card > select {
     margin-top: 12px;
     display: flex;
