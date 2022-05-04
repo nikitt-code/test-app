@@ -88,8 +88,9 @@
     </body>
 
     <script>
-        let web_app = window.Telegram.WebApp;
-        if(!web_app.isExpanded) web_app.expand();
+        if(!window.Telegram.WebApp.isExpanded) window.Telegram.WebApp.expand();
+        window.Telegram.WebApp.MainButton.text = 'Create project!';
+        window.Telegram.WebApp.MainButton.show();
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
