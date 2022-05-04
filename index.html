@@ -76,6 +76,7 @@
 
     <script>
         let web_app = window.Telegram.WebApp;
+        if(!web_app.isExpanded) web_app.expand();
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
