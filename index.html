@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+        <title>Swiftle Bot</title>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    </head>
+
+    <body>
+
+        <div class="cardquestion-inp">
+            Project name
+            <input type="text" placeholder="Type something...">
+        </div>
+
+        <div class="cardquestion-inp">
+            What is the result that you want to achieve with this project?
+            <input type="text" placeholder="Type something...">
+        </div>
+
+        <div class="cardquestion-inp">
+            References links
+            <input type="text" placeholder="Type something...">
+        </div>
+
+        <div class="cardquestion-inp">
+            What do you like in these examples
+            <input type="text" placeholder="Type something...">
+        </div>
+
+        <div class="cardquestion-inp">
+            What don't you like in these examples
+            <input type="text" placeholder="Type something...">
+        </div>
+
+        <div class="cardquestion-switch">
+            Please select one or more of the following that best describes your project
+            <div>
+                Mobile App
+            </div>
+            <div>
+                Web App
+            </div>
+            <div>
+                Automation
+            </div>
+            <div>
+                Software
+            </div>
+            <div>
+                Design
+            </div>
+            <div>
+                I don't know
+            </div>
+        </div>
+
+        <div class="cardquestion-upload">
+            Files
+            <input type="file" placeholder="File">
+        </div>
+
+        <div class="cardquestion-select">
+            What is your budget range for the project?
+            <select name="price">
+                <option value="s255">$2500 - $5000</option>
+                <option value="s510">$5000 - $10000</option>
+                <option value="s10p">$Lambo</option>
+            </select>
+        </div>
+
+    </body>
+
+    <script>
+        let web_app = window.Telegram.WebApp;
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+
+</html>
