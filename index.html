@@ -8,6 +8,8 @@
         <title>Swiftle Bot</title>
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+        <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto:wght@100;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
         <script>
             if(!window.Telegram.WebApp.isExpanded) window.Telegram.WebApp.expand();
         </script>
@@ -17,64 +19,72 @@
 
         <div class="card cardquestion-inp">
             <p>Project name</p>
-            <input type="text" placeholder="Type something...">
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What is the result that you want to achieve with this project?</p>
-            <input type="text" placeholder="Type something...">
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>References links</p>
-            <input type="text" placeholder="Type something...">
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What do you like in these examples</p>
-            <input type="text" placeholder="Type something...">
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What don't you like in these examples</p>
-            <input type="text" placeholder="Type something...">
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-switch">
             <p>Please select one or more of the following that best describes your project</p>
-            <div>
-                Mobile App
-            </div>
-            <div>
-                Web App
-            </div>
-            <div>
-                Automation
-            </div>
-            <div>
-                Software
-            </div>
-            <div>
-                Design
-            </div>
-            <div>
-                I don't know
+            <div class="checklist">
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="mobile_app">
+                    <label for="mobile_app">Mobile App</label>
+                </div>
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="web_app">
+                    <label for="web_app">Web App</label>
+                </div>
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="automation">
+                    <label for="automation">Automation</label>
+                </div>
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="software">
+                    <label for="software">Software</label>
+                </div>
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="design">
+                    <label for="design">Design</label>
+                </div>
+                <div class="checkbox-card">
+                    <input class="custom-checkbox" type="checkbox" id="idk">
+                    <label for="idk">I don't know</label>
+                </div>
             </div>
         </div>
 
         <div class="card cardquestion-upload">
             <p>Files</p>
-            <input type="file" placeholder="File">
+            <input class="inp" type="file" placeholder="File">
         </div>
 
         <div class="card cardquestion-area">
             <p>Project info (Including URLs)</p>
-            <textarea placeholder="Type something..." rows="4"></textarea>
+            <textarea class="inp" placeholder="Type something..." rows="5"></textarea>
         </div>
 
         <div class="card cardquestion-select">
             <p>Do you need design?</p>
-            <select name="price">
+            <select class="inp" name="price">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
@@ -82,11 +92,16 @@
 
         <div class="card cardquestion-select">
             <p>What is your budget range for the project?</p>
-            <select name="price">
+            <select class="inp" name="price">
                 <option value="s255">$2500 - $5000</option>
                 <option value="s510">$5000 - $10000</option>
-                <option value="s10p">$Lambo</option>
+                <option value="s10p">$10000+</option>
             </select>
+        </div>
+
+        <div class="card cardquestion-inp">
+            <p>Enter your Email</p>
+            <input class="inp" type="text" placeholder="Type something...">
         </div>
 
     </body>
