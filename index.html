@@ -19,27 +19,27 @@
 
         <div class="card cardquestion-inp">
             <p>Project name</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="project_name" class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What is the result that you want to achieve with this project?</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="describe" class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>References links</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="reference" class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What do you like in these examples</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="reference_like" class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-inp">
             <p>What don't you like in these examples</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="reference_dislike" class="inp" type="text" placeholder="Type something...">
         </div>
 
         <div class="card cardquestion-switch">
@@ -73,35 +73,39 @@
         </div>
 
         <div class="card cardquestion-upload">
-            <p>Files</p>
-            <input class="inp" type="file" placeholder="File">
+            <p>File</p>
+            <input id="file" class="inp" type="file" placeholder="File">
         </div>
 
         <div class="card cardquestion-area">
             <p>Project info (Including URLs)</p>
-            <textarea class="inp" placeholder="Type something..." rows="5"></textarea>
+            <textarea id="info" class="inp" placeholder="Type something..." rows="5"></textarea>
         </div>
 
         <div class="card cardquestion-select">
             <p>Do you need design?</p>
-            <select class="inp" name="price">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+            <select id="need_design" class="inp" name="price">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
             </select>
         </div>
 
         <div class="card cardquestion-select">
             <p>What is your budget range for the project?</p>
-            <select class="inp" name="price">
-                <option value="s255">$2500 - $5000</option>
-                <option value="s510">$5000 - $10000</option>
-                <option value="s10p">$10000+</option>
+            <select id="cost" class="inp" name="price">
+                <option value="2500-5000">$2500 - $5000</option>
+                <option value="5000-10000">$5000 - $10000</option>
+                <option value="10000+">$10000+</option>
             </select>
         </div>
 
         <div class="card cardquestion-inp">
             <p>Enter your Email</p>
-            <input class="inp" type="text" placeholder="Type something...">
+            <input id="email" required class="inp" type="email" placeholder="Type something...">
+        </div>
+
+        <div class="card cardquestion-inp">
+            <button id="test">Click me</button>
         </div>
 
     </body>
@@ -109,6 +113,64 @@
     <script>
         window.Telegram.WebApp.MainButton.text = 'Create project!';
         window.Telegram.WebApp.MainButton.show();
+
+        let send_post = (url, objects) => {
+            let json = JSON.stringify(objects);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = () => console.log(xhr.responseText);
+            xhr.send(json);
+        };
+
+        document.getElementById("test").onclick = () => {
+            let data = {
+                "project_name": document.getElementById("project_name").value,
+                "describe": document.getElementById("describe").value,
+                "reference": document.getElementById("reference").value,
+                "reference_like": document.getElementById("reference_like").value,
+                "reference_dislike": document.getElementById("reference_dislike").value,
+                "checkboxes": {
+                    "mobile_app": document.getElementById("mobile_app").checked,
+                    "web_app": document.getElementById("web_app").checked,
+                    "automation": document.getElementById("automation").checked,
+                    "software": document.getElementById("software").checked,
+                    "design": document.getElementById("design").checked,
+                    "idk": document.getElementById("idk").checked
+                },
+                "info": document.getElementById("info").value,
+                "need_design": (document.getElementById("need_design").value === 'true'),
+                "cost": document.getElementById("cost").value
+            }
+
+            /*
+            let files = document.getElementById("file").files
+            let filedata = {};
+            if (files.length > 0) {
+                files.forEach((file) => {
+                    let reader = new FileReader();
+                    reader.readAsText(file, "UTF-8");
+                    reader.onload = (evt) => {
+                        filedata[document.getElementById("file").files[0].name] = evt.target.result
+                    }
+                    reader.onerror = (evt) => {
+                        console.log('[Swiftle] Error uploading file.')
+                    }
+                });
+            }
+            data["files"] = filedata;
+             */
+            console.log(data);
+            let telegram_id = 0;
+            let email = document.getElementById("email").value;
+            send_post("https://api.swiftle.io/createProject?telegram_id=")
+        };
+
+        // window.Telegram.WebApp.MainButton.click(() => {
+        //    console.log(following);
+        //});
+
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
