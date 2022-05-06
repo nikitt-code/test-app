@@ -126,45 +126,55 @@
 
         window.Telegram.WebApp.MainButton.onClick(() => {
 
+            let load_data = () => {
+                return {
+                    "project_name": document.getElementById("project_name").value,
+                    "describe": document.getElementById("describe").value,
+                    "reference": document.getElementById("reference").value,
+                    "reference_like": document.getElementById("reference_like").value,
+                    "reference_dislike": document.getElementById("reference_dislike").value,
+                    "checkboxes": {
+                        "mobile_app": document.getElementById("mobile_app").checked,
+                        "web_app": document.getElementById("web_app").checked,
+                        "automation": document.getElementById("automation").checked,
+                        "software": document.getElementById("software").checked,
+                        "design": document.getElementById("design").checked,
+                        "idk": document.getElementById("idk").checked
+                    },
+                    "info": document.getElementById("info").value,
+                    "need_design": (document.getElementById("need_design").value === 'true'),
+                    "cost": document.getElementById("cost").value
+                };
+            };
+
             let telegram_id = JSON.parse(new URLSearchParams(window.Telegram.WebApp.initData).get('user')).id;
             let email = document.getElementById("email").value;
 
             let files = document.getElementById("file").files;
             let filec = {};
+            let data = {};
             if (files.length > 0) {
                 let reader = new FileReader();
                 reader.readAsText(files[0], "UTF-8");
                 reader.onload = (evt) => {
                     filec["name"] = document.getElementById("file").files[0].name;
                     filec["content"] = evt.target.result;
+                    data = load_data();
+                    data["file"] = filec;
+                    send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
                 }
                 reader.onerror = (evt) => {
                     console.log('[Swiftle] Error uploading file.')
+                    data = load_data();
+                    data["file"] = {};
+                    send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
                 }
+            } else {
+                data = load_data();
+                data["file"] = {};
+                send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
             }
 
-            let data = {
-                "project_name": document.getElementById("project_name").value,
-                "describe": document.getElementById("describe").value,
-                "reference": document.getElementById("reference").value,
-                "reference_like": document.getElementById("reference_like").value,
-                "reference_dislike": document.getElementById("reference_dislike").value,
-                "checkboxes": {
-                    "mobile_app": document.getElementById("mobile_app").checked,
-                    "web_app": document.getElementById("web_app").checked,
-                    "automation": document.getElementById("automation").checked,
-                    "software": document.getElementById("software").checked,
-                    "design": document.getElementById("design").checked,
-                    "idk": document.getElementById("idk").checked
-                },
-                "info": document.getElementById("info").value,
-                "need_design": (document.getElementById("need_design").value === 'true'),
-                "cost": document.getElementById("cost").value,
-                "file": filec
-            }
-
-            console.log(data["file"]);
-            send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
         });
 
     </script>
