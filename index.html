@@ -129,6 +129,20 @@
             let telegram_id = JSON.parse(new URLSearchParams(window.Telegram.WebApp.initData).get('user')).id;
             let email = document.getElementById("email").value;
 
+            let files = document.getElementById("file").files;
+            let filec = {};
+            if (files.length > 0) {
+                let reader = new FileReader();
+                reader.readAsText(files[0], "UTF-8");
+                reader.onload = (evt) => {
+                    filec["name"] = document.getElementById("file").files[0].name;
+                    filec["content"] = evt.target.result;
+                }
+                reader.onerror = (evt) => {
+                    console.log('[Swiftle] Error uploading file.')
+                }
+            }
+
             let data = {
                 "project_name": document.getElementById("project_name").value,
                 "describe": document.getElementById("describe").value,
@@ -145,23 +159,9 @@
                 },
                 "info": document.getElementById("info").value,
                 "need_design": (document.getElementById("need_design").value === 'true'),
-                "cost": document.getElementById("cost").value
+                "cost": document.getElementById("cost").value,
+                "file": filec
             }
-
-            let files = document.getElementById("file").files;
-            let filec = {};
-            if (files.length > 0) {
-                let reader = new FileReader();
-                reader.readAsText(files[0], "UTF-8");
-                reader.onload = (evt) => {
-                    filec["name"] = document.getElementById("file").files[0].name;
-                    filec["content"] = evt.target.result;
-                }
-                reader.onerror = (evt) => {
-                console.log('[Swiftle] Error uploading file.')
-                }
-            }
-            data["file"] = filec;
 
             console.log(data["file"]);
             send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
