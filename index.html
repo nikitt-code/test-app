@@ -104,10 +104,6 @@
             <input id="email" required class="inp" type="email" placeholder="Type something...">
         </div>
 
-        <div class="card cardquestion-inp">
-            <button id="test">Click me</button>
-        </div>
-
     </body>
 
     <script>
@@ -166,7 +162,7 @@
             let telegram_id = JSON.parse(new URLSearchParams(window.Telegram.WebApp.initData).get('user')).id;
             let email = document.getElementById("email").value;
             console.log(telegram_id, email);
-            send_post("https://api.swiftle.io/createProject?telegram_id="+telegram_id.toString()+"&email="+email, data);
+            send_post("https://api.swiftle.iotest/createProject?telegram_id="+telegram_id.toString()+"&email="+email, data);
         });
 
     </script>
