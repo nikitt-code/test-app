@@ -148,23 +148,20 @@
                 "cost": document.getElementById("cost").value
             }
 
-            /*
-            let files = document.getElementById("file").files
+            let files = document.getElementById("file").files;
             let filedata = {};
             if (files.length > 0) {
-                files.forEach((file) => {
-                    let reader = new FileReader();
-                    reader.readAsText(file, "UTF-8");
-                    reader.onload = (evt) => {
-                        filedata[document.getElementById("file").files[0].name] = evt.target.result
-                    }
-                    reader.onerror = (evt) => {
-                        console.log('[Swiftle] Error uploading file.')
-                    }
-                });
+                let reader = new FileReader();
+                reader.readAsText(files[0], "UTF-8");
+                reader.onload = (evt) => {
+                    filedata[document.getElementById("file").files[0].name] = evt.target.result
+                }
+                reader.onerror = (evt) => {
+                console.log('[Swiftle] Error uploading file.')
+                }
             }
             data["files"] = filedata;
-             */
+
 
             console.log(telegram_id, email);
             send_post("https://swiftle.bubbleapps.io/version-test/api/1.1/wf/tg/initialize?telegram_id="+telegram_id.toString()+"&email="+email, data);
